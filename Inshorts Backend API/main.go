@@ -37,6 +37,8 @@ func (h *articleHandlers) get(w http.ResponseWriter, r *http.Request) {
 	}
 	h.Unlock()
 
+
+
 	jsonBytes, err := json.Marshal(articles)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
@@ -60,10 +62,13 @@ func (h *articleHandlers) articles(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		w.Write([]byte("method not allowed"))
 		return
+
 	}
 }
 
 func (h *articleHandlers) post(w http.ResponseWriter, r *http.Request) {
+
+
 	bodyBytes, err := ioutil.ReadAll(r.Body)
 	defer r.Body.Close()
 	if err != nil {
